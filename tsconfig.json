@@ -24,9 +24,6 @@
       "~/*": ["./app/*"]
     },
 
-    // React Router
-    "types": ["@react-router/dev/module"],
-
     // Vite takes care of building everything, not tsc.
     "noEmit": true
   }
