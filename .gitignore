@@ -9,6 +9,9 @@ build/
 dist/
 .cache/
 
+# React Router generated files
+.react-router/
+
 # Environment variables
 .env
 .env.local
