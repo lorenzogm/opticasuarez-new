@@ -1,6 +1,8 @@
 import Hero from "../sections/Hero";
 import Services from "../sections/Services";
 import About from "../sections/About";
+import Brands from "../sections/Brands";
+import Testimonials from "../sections/Testimonials";
 import Contact from "../sections/Contact";
 import content from "../../content/homepage.json";
 
@@ -22,6 +24,15 @@ export default function Homepage() {
         description={content.about.description}
         experience={content.about.experience}
         clients={content.about.clients}
+      />
+      <Brands
+        title={content.brands.title}
+        description={content.brands.description}
+        brands={content.brands.brands}
+      />
+      <Testimonials
+        title={content.testimonials.title}
+        testimonials={content.testimonials.testimonials}
       />
       <Contact
         title={content.contact.title}
