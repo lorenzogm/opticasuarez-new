@@ -1,10 +1,16 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
-import './global.css';
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "react-router";
+import "./global.css";
 
 export function meta() {
   return [
-    { title: 'Optica Suarez' },
-    { name: 'description', content: 'Welcome to Optica Suarez!' },
+    { title: "Optica Suarez" },
+    { name: "description", content: "Welcome to Optica Suarez!" },
   ];
 }
 
