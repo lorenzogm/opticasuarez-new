@@ -1,0 +1,7 @@
+node_modules
+dist
+build
+.git
+.eslintrc.json
+package-lock.json
+.react-router
