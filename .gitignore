@@ -52,4 +52,4 @@ Thumbs.db
 *~
 
 # TypeScript
-*.tsbuildinfonode_modules/
+*.tsbuildinfo
