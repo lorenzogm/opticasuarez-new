@@ -8,5 +8,6 @@ export default [
   route('book/step4', 'routes/book-step4.tsx'),
   route('quienes-somos', 'routes/quienes-somos.tsx'),
   route('terapia-visual', 'routes/terapia-visual.tsx'),
+  route('contactologia', 'routes/contactologia.tsx'),
   route('examen-visual', 'routes/examen-visual.tsx'),
 ] satisfies RouteConfig;
