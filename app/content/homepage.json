@@ -1,9 +1,43 @@
 {
   "hero": {
-    "title": "Óptica Suárez",
-    "subtitle": "Expertos en salud visual desde 1985",
-    "description": "Ofrecemos soluciones integrales para tu visión con la mejor tecnología y atención personalizada",
+    "title": "TU ÓPTICA EN JAÉN",
+    "subtitle": "BIENVENIDOS A ÓPTICA SUAREZ",
+    "description": "DESDE 1940 CUIDANDO TU VISIÓN",
     "cta": "Descubre nuestros servicios"
+  },
+  "servicesGrid": {
+    "items": [
+      {
+        "title": "VISIÓN BINOCULAR",
+        "description": "Paciente realizando un examen de visión con los profesionales de óptica Suárez en Jaén.",
+        "url": "/examen-visual",
+        "image": "https://via.placeholder.com/400x300/f3f4f6/374151?text=Visión+Binocular"
+      },
+      {
+        "title": "TERAPIA VISUAL",
+        "description": "Asesoramiento personalizado en la compra de monturas y cristales graduados en óptica Suárez en Jaén.",
+        "url": "/terapia-visual",
+        "image": "https://via.placeholder.com/400x300/f3f4f6/374151?text=Terapia+Visual"
+      },
+      {
+        "title": "CONTACTOLOGÍA",
+        "description": "Chica poniéndose unas lentillas compradas en óptica Suárez en Jaén.",
+        "url": "/contactologia",
+        "image": "https://via.placeholder.com/400x300/f3f4f6/374151?text=Contactología"
+      },
+      {
+        "title": "VISIÓN PEDIÁTRICA",
+        "description": "Niño realizando terapias oculares en el centro óptico de óptica Suárez en Jaén.",
+        "url": "/vision-pediatrica",
+        "image": "https://via.placeholder.com/400x300/f3f4f6/374151?text=Visión+Pediátrica"
+      },
+      {
+        "title": "CONTROL DE MIOPÍA",
+        "description": "Servicios especializados en control de miopía para el cuidado de tu visión.",
+        "url": "/control-de-miopia",
+        "image": "https://via.placeholder.com/400x300/f3f4f6/374151?text=Control+de+Miopía"
+      }
+    ]
   },
   "services": {
     "title": "Nuestros Servicios",
