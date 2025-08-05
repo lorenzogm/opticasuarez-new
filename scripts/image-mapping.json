@@ -157,10 +157,15 @@
       ]
     }
   },
+  "source_pages": {
+    "homepage": "https://opticasuarezjaen.com/",
+    "quienes_somos": "https://opticasuarezjaen.com/quienes-somos"
+  },
   "instructions": {
-    "step1": "Replace 'TO_BE_PROVIDED' with actual external URLs",
-    "step2": "Run: node scripts/update-image.js '<external_url>' '<current_path>' to download each image",
-    "step3": "Verify each image displays correctly in the application",
-    "step4": "Update status to 'completed' for each processed image"
+    "step1": "Extract image URLs from source pages above",
+    "step2": "Replace 'TO_BE_PROVIDED' with actual external URLs",
+    "step3": "Run: node scripts/batch-update-images.js to download all images",
+    "step4": "Verify each image displays correctly in the application",
+    "step5": "Update status to 'completed' for each processed image"
   }
 }

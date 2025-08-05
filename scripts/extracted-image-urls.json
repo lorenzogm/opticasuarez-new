@@ -1,0 +1,22 @@
+{
+  "extraction_date": "2025-08-05T15:01:19.628Z",
+  "total_images": 0,
+  "pages": {
+    "homepage": {
+      "services": [],
+      "locations": [],
+      "team": [],
+      "timeline": [],
+      "partners": [],
+      "other": []
+    }
+  },
+  "instructions": {
+    "next_steps": [
+      "Review the extracted image URLs",
+      "Match them with the appropriate images in image-mapping.json",
+      "Update the external_url fields in image-mapping.json",
+      "Run: node scripts/batch-update-images.js"
+    ]
+  }
+}

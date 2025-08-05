@@ -17,34 +17,53 @@ The application currently uses placeholder images (1.5-2KB WebP files) that need
 ### 1. `scripts/update-image.js`
 Single image download script for processing one image at a time.
 
-**Usage:**
-```bash
-node scripts/update-image.js "<external-url>" "<target-path>" [--dry-run]
-```
-
-**Example:**
-```bash
-node scripts/update-image.js "https://media.v2.siweb.es/example.jpg" "/images/homepage/services/vision-binocular.webp"
-```
-
 ### 2. `scripts/batch-update-images.js`
 Batch processing script for updating multiple images at once.
 
-**Usage:**
-```bash
-node scripts/batch-update-images.js [--dry-run]
-```
+### 3. `scripts/extract-image-urls.js`
+HTML-based image URL extraction from source pages.
 
-### 3. `scripts/image-mapping.json`
+### 4. `scripts/browser-extract-images.js`
+Advanced browser automation script for extracting images from JavaScript-rendered pages.
+
+### 5. `scripts/image-mapping.json`
 Configuration file that maps all images with their external URLs and status.
+
+### 6. `scripts/README.md`
+Technical documentation and usage guides.
+
+## Source Pages Provided ✅
+
+The source pages for extracting images have been provided:
+
+- **Homepage images:** https://opticasuarezjaen.com/
+- **Quienes somos images:** https://opticasuarezjaen.com/quienes-somos
 
 ## Process Steps
 
-### Step 1: Identify External URLs
-For each of the 20 images, identify the correct external URL from the source system (e.g., `https://media.v2.siweb.es/...`).
+### Step 1: Extract Image URLs from Source Pages
 
-### Step 2: Update Mapping File
-Edit `scripts/image-mapping.json` and replace `"TO_BE_PROVIDED"` with the actual external URLs.
+**Option A: Advanced Browser-Based Extraction (Recommended)**
+```bash
+node scripts/browser-extract-images.js --all
+```
+This uses browser automation to:
+- Handle JavaScript-rendered content  
+- Extract images with context and categorization
+- Generate smart URL suggestions for each mapping entry
+
+**Option B: Simple HTML Extraction**
+```bash
+node scripts/extract-image-urls.js --all
+```
+
+### Step 2: Review Extracted URLs
+Check the generated files:
+- `extracted-images-*.json` - All extracted image data
+- `url-suggestions-*.json` - Smart suggestions for each mapping entry
+
+### Step 3: Update Mapping File
+Edit `scripts/image-mapping.json` and replace `"TO_BE_PROVIDED"` with the actual external URLs from the extracted data.
 
 Example:
 ```json
@@ -56,13 +75,13 @@ Example:
 }
 ```
 
-### Step 3: Preview Changes (Optional)
+### Step 4: Preview Changes (Optional)
 Run a dry-run to see what would be updated:
 ```bash
 node scripts/batch-update-images.js --dry-run
 ```
 
-### Step 4: Download Images
+### Step 5: Download Images
 Execute the batch update:
 ```bash
 node scripts/batch-update-images.js
@@ -73,14 +92,47 @@ Or update images one by one:
 node scripts/update-image.js "https://external-url.com/image.jpg" "/images/path/to/image.webp"
 ```
 
-### Step 5: Verify Results
+## Script Usage Details
+
+### `scripts/update-image.js`
+**Usage:**
+```bash
+node scripts/update-image.js "<external-url>" "<target-path>" [--dry-run]
+```
+
+**Example:**
+```bash
+node scripts/update-image.js "https://media.v2.siweb.es/example.jpg" "/images/homepage/services/vision-binocular.webp"
+```
+
+### `scripts/batch-update-images.js`
+**Usage:**
+```bash
+node scripts/batch-update-images.js [--dry-run]
+```
+
+### `scripts/extract-image-urls.js`
+**Usage:**
+```bash
+node scripts/extract-image-urls.js [--homepage] [--quienes-somos] [--all]
+```
+
+### `scripts/browser-extract-images.js`
+**Usage:**
+```bash
+node scripts/browser-extract-images.js [--homepage] [--quienes-somos] [--all]
+```
+
+## Process Continuation
+
+### Step 6: Verify Results
 1. Check that images were downloaded successfully
 2. Start the development server: `npm run dev`
 3. Visit both pages to verify images display correctly:
    - Homepage: `http://localhost:5173/`
    - Quienes somos: `http://localhost:5173/quienes-somos`
 
-### Step 6: Build and Test
+### Step 7: Build and Test
 ```bash
 npm run build
 ```
