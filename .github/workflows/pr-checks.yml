@@ -5,9 +5,9 @@ on:
     branches: [main]
 
 jobs:
-  pr-checks:
+  typescript-check:
     runs-on: ubuntu-latest
-    name: Code Quality Checks
+    name: TypeScript Check
 
     steps:
       - name: Checkout
@@ -25,11 +25,62 @@ jobs:
       - name: TypeScript type check
         run: npm run typecheck
 
+  eslint-check:
+    runs-on: ubuntu-latest
+    name: ESLint Check
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: ESLint check
         run: npm run lint
 
+  prettier-check:
+    runs-on: ubuntu-latest
+    name: Prettier Check
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Prettier format check
         run: npm run format
+
+  build-check:
+    runs-on: ubuntu-latest
+    name: Build Check
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build check
         run: npm run build
