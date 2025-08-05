@@ -51,3 +51,7 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+
+# Image update scripts - temporary files
+public/images/demo/
+*.backup
