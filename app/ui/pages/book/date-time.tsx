@@ -5,7 +5,8 @@ import ProgressIndicator from '../../components/progress-indicator';
 // Generate available dates for the next 30 days (excluding weekends)
 const generateAvailableDates = () => {
   const dates = [];
-  const today = new Date();
+  // Use a fixed base date for consistent behavior - August 5, 2024
+  const today = new Date(2024, 7, 5); // Month is 0-indexed, so 7 = August
   let currentDate = new Date(today);
 
   // Start from tomorrow
