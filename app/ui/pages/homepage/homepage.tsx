@@ -1,3 +1,4 @@
+import GlobalNavigation from '../../components/global-navigation';
 import BookAppointment from '../../sections/book-appointment';
 import Hero from '../../sections/hero';
 import ServicesGrid from '../../sections/services-grid';
@@ -12,6 +13,7 @@ import content from '../../../content/homepage.json';
 export default function Homepage() {
   return (
     <>
+      <GlobalNavigation />
       <main>
         <Hero
           title={content.hero.title}
