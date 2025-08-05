@@ -1,0 +1,166 @@
+{
+  "images_to_update": {
+    "homepage": {
+      "services": [
+        {
+          "name": "Vision Binocular",
+          "current_path": "/images/homepage/services/vision-binocular.webp",
+          "description": "Paciente realizando un examen de visión con los profesionales de óptica Suárez en Jaén.",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Terapia Visual",
+          "current_path": "/images/homepage/services/terapia-visual.webp",
+          "description": "Asesoramiento personalizado en la compra de monturas y cristales graduados en óptica Suárez en Jaén.",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Contactología",
+          "current_path": "/images/homepage/services/contactologia.webp",
+          "description": "Chica poniéndose unas lentillas compradas en óptica Suárez en Jaén.",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Visión Pediátrica",
+          "current_path": "/images/homepage/services/vision-pediatrica.webp",
+          "description": "Niño realizando terapias oculares en el centro óptico de óptica Suárez en Jaén.",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Control de Miopía",
+          "current_path": "/images/homepage/services/control-de-miopia.webp",
+          "description": "Servicios especializados en control de miopía para el cuidado de tu visión.",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        }
+      ],
+      "locations": [
+        {
+          "name": "Óptica Bulevar",
+          "current_path": "/images/homepage/locations/optica-bulevar.webp",
+          "description": "Centro en C. de Canarias, 6, 23009 Jaén",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Óptica Centro",
+          "current_path": "/images/homepage/locations/optica-centro.webp",
+          "description": "Centro en P.º de la Estación, 12, 23003 Jaén",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Kit Digital 2024",
+          "current_path": "/images/homepage/partners/kit-digital-2024.webp",
+          "description": "Logo del programa Kit Digital 2024",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        }
+      ]
+    },
+    "quienes_somos": {
+      "timeline": [
+        {
+          "name": "Visión Pediátrica (1940)",
+          "current_path": "/images/quienes-somos/timeline/vision-pediatrica.webp",
+          "description": "Apertura - primer establecimiento óptico en la calle Maestra",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Óptica Centro (1960)",
+          "current_path": "/images/quienes-somos/timeline/optica-centro.webp",
+          "description": "Hogar permanente en el paseo de la estación 12",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Juan Miguel (1970)",
+          "current_path": "/images/quienes-somos/timeline/juan-miguel.webp",
+          "description": "Juan Miguel inicia su carrera a los 13 años",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Liderazgo (1998)",
+          "current_path": "/images/quienes-somos/timeline/liderazgo.webp",
+          "description": "Juan Miguel asume el mando del establecimiento",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Equipo Profesional (2009)",
+          "current_path": "/images/quienes-somos/timeline/equipo-profesional.webp",
+          "description": "Nueva generación se une al negocio familiar",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Centro Bulevar (2020)",
+          "current_path": "/images/quienes-somos/timeline/centro-bulevar.webp",
+          "description": "Apertura del nuevo centro en la zona del Bulevar",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        }
+      ],
+      "team": [
+        {
+          "name": "Juan Miguel Toledano Pantoja",
+          "current_path": "/images/quienes-somos/team/juan-miguel.webp",
+          "description": "Director de Óptica Suárez",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Juan Pedro Toledano Bermejo",
+          "current_path": "/images/quienes-somos/team/juan-pedro.webp",
+          "description": "Director del Centro de Optometría y TV Suárez",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Clara Santiago Castro",
+          "current_path": "/images/quienes-somos/team/clara-santiago.webp",
+          "description": "Graduada en Óptica y Optometría",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Vanessa Cantero Adail",
+          "current_path": "/images/quienes-somos/team/vanessa-cantero.webp",
+          "description": "Diplomada en Óptica y Optometría",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        }
+      ],
+      "locations": [
+        {
+          "name": "Óptica Centro",
+          "current_path": "/images/quienes-somos/locations/optica-centro.webp",
+          "description": "Centro en P.º de la Estación, 12, 23003 Jaén",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        },
+        {
+          "name": "Óptica Bulevar",
+          "current_path": "/images/quienes-somos/locations/optica-bulevar.webp",
+          "description": "Centro en C. de Canarias, 6, 23009 Jaén",
+          "external_url": "TO_BE_PROVIDED",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "instructions": {
+    "step1": "Replace 'TO_BE_PROVIDED' with actual external URLs",
+    "step2": "Run: node scripts/update-image.js '<external_url>' '<current_path>' to download each image",
+    "step3": "Verify each image displays correctly in the application",
+    "step4": "Update status to 'completed' for each processed image"
+  }
+}
