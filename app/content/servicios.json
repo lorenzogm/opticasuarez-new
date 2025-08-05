@@ -1,0 +1,43 @@
+{
+  "title": "SERVICIOS",
+  "subtitle": "Descubre todos nuestros servicios especializados en salud visual",
+  "description": "En Óptica Suárez ofrecemos una amplia gama de servicios profesionales para el cuidado integral de tu visión. Nuestro equipo de especialistas está preparado para brindarte la mejor atención en cada área.",
+  "services": [
+    {
+      "title": "EXAMEN VISUAL",
+      "description": "Evaluación profesional completa de tu salud visual con tecnología avanzada",
+      "url": "/examen-visual",
+      "image": "/images/homepage/services/vision-binocular.jpg"
+    },
+    {
+      "title": "TERAPIA VISUAL",
+      "description": "Tratamientos especializados para mejorar y rehabilitar tu sistema visual",
+      "url": "/terapia-visual",
+      "image": "/images/homepage/services/terapia-visual.jpg"
+    },
+    {
+      "title": "CONTACTOLOGÍA",
+      "description": "Adaptación personalizada de lentes de contacto para cada necesidad",
+      "url": "/contactologia",
+      "image": "/images/homepage/services/contactologia.jpg"
+    },
+    {
+      "title": "VISIÓN PEDIÁTRICA",
+      "description": "Cuidado especializado de la visión en niños y adolescentes",
+      "url": "/vision-pediatrica",
+      "image": "/images/homepage/services/vision-pediatrica.jpg"
+    },
+    {
+      "title": "CONTROL DE MIOPÍA",
+      "description": "Tratamientos avanzados para frenar la progresión de la miopía",
+      "url": "/control-de-miopia",
+      "image": "/images/homepage/services/control-de-miopia.jpg"
+    },
+    {
+      "title": "VISIÓN DEPORTIVA",
+      "description": "Optimización visual específica para el rendimiento deportivo",
+      "url": "/vision-deportiva",
+      "image": "/images/homepage/services/vision-deportiva.jpg"
+    }
+  ]
+}
