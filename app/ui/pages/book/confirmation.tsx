@@ -117,7 +117,7 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
           <Text as="h2" variant="heading-3" className="text-gray-900 mb-4">
             ¡Cita confirmada!
           </Text>
-          <Text variant="body-md" textColor="light" className="mb-6">
+          <Text variant="body-md" colour="light" className="mb-6">
             Tu cita ha sido reservada exitosamente. Recibirás un email de
             confirmación en breve.
           </Text>
@@ -145,7 +145,7 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
               <Text as="h1" variant="heading-4" className="text-gray-900">
                 Óptica Suárez
               </Text>
-              <Text variant="body-sm" textColor="light">Reservar cita</Text>
+              <Text variant="body-sm" colour="light">Reservar cita</Text>
             </div>
           </div>
         </div>
@@ -158,7 +158,7 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
           <ProgressIndicator currentStep={4} totalSteps={4} />
           <div className="text-center mt-4">
             <Text as="h2" variant="heading-3" className="text-gray-900">Confirmar cita</Text>
-            <Text variant="body-md" textColor="light" className="mt-2">
+            <Text variant="body-md" colour="light" className="mt-2">
               Revisa los detalles de tu cita antes de confirmar
             </Text>
           </div>

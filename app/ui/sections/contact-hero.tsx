@@ -17,7 +17,7 @@ export default function ContactHero({
         <Text
           as="h1"
           variant="heading-1"
-          textColor="white"
+          colour="white"
           align="center"
           className="mb-4 uppercase tracking-wide"
         >
@@ -25,7 +25,7 @@ export default function ContactHero({
         </Text>
         <Text
           as="h2"
-          textColor="white"
+          colour="white"
           align="center"
           className="mb-6 text-blue-100"
         >
@@ -33,7 +33,7 @@ export default function ContactHero({
         </Text>
         <Text
           variant="body-lg"
-          textColor="white"
+          colour="white"
           align="center"
           className="text-blue-50 max-w-2xl mx-auto"
         >

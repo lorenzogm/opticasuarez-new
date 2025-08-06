@@ -36,7 +36,7 @@ export default function ContactSocialMedia({
           </Text>
           <Text
             variant="body-lg"
-            textColor="muted"
+            colour="muted"
             align="center"
             className="max-w-2xl mx-auto"
           >
@@ -59,7 +59,7 @@ export default function ContactSocialMedia({
             <Text as="h3" align="center" className="mb-2">
               {instagram.title}
             </Text>
-            <Text variant="body-lg" textColor="muted" align="center" className="mb-4">
+            <Text variant="body-lg" colour="muted" align="center" className="mb-4">
               {instagram.handle}
             </Text>
             <Button
@@ -85,7 +85,7 @@ export default function ContactSocialMedia({
             <Text as="h3" align="center" className="mb-2">
               {facebook.title}
             </Text>
-            <Text variant="body-lg" textColor="muted" align="center" className="mb-4">
+            <Text variant="body-lg" colour="muted" align="center" className="mb-4">
               {facebook.handle}
             </Text>
             <Button
@@ -111,7 +111,7 @@ export default function ContactSocialMedia({
             <Text as="h3" align="center" className="mb-2">
               {youtube.title}
             </Text>
-            <Text variant="body-lg" textColor="muted" align="center" className="mb-4">
+            <Text variant="body-lg" colour="muted" align="center" className="mb-4">
               {youtube.handle}
             </Text>
             <Button

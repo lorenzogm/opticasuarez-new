@@ -20,14 +20,14 @@ export default function TerapiaVisualCta({
         <Text
           as="h2"
           variant="heading-2"
-          textColor="white"
+          colour="white"
           className="mb-6 uppercase tracking-wide"
         >
           {title}
         </Text>
         <Text
           variant="body-lg"
-          textColor="white"
+          colour="white"
           className="mb-8 leading-relaxed opacity-90"
         >
           {description}

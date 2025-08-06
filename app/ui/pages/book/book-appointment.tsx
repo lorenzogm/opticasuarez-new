@@ -70,7 +70,7 @@ export default function BookAppointment() {
               <Text as="h1" variant="heading-4" className="text-gray-900">
                 Óptica Suárez
               </Text>
-              <Text variant="body-sm" textColor="light">Reservar cita</Text>
+              <Text variant="body-sm" colour="light">Reservar cita</Text>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function BookAppointment() {
             <Text as="h2" variant="heading-3" className="text-gray-900">
               Selecciona el tipo de apoyo
             </Text>
-            <Text variant="body-md" textColor="light" className="mt-2">
+            <Text variant="body-md" colour="light" className="mt-2">
               Elige el tipo de apoyo mental relacionado con la salud visual que
               necesitas
             </Text>
@@ -111,11 +111,11 @@ export default function BookAppointment() {
                     <Text as="h3" variant="heading-5" className="text-gray-900">
                       {type.title}
                     </Text>
-                    <Text variant="body-sm" textColor="muted" className="bg-gray-100 px-2 py-1 rounded">
+                    <Text variant="body-sm" colour="muted" className="bg-gray-100 px-2 py-1 rounded">
                       {type.duration}
                     </Text>
                   </div>
-                  <Text variant="body-md" textColor="light" className="leading-relaxed">
+                  <Text variant="body-md" colour="light" className="leading-relaxed">
                     {type.description}
                   </Text>
                 </div>

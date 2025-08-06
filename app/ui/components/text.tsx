@@ -14,7 +14,7 @@ const textVariants = cva('text-gray-900', {
       'body-md': 'text-base leading-relaxed',
       'body-sm': 'text-sm leading-relaxed',
     },
-    textColor: {
+    colour: {
       default: 'text-gray-900',
       muted: 'text-gray-500',
       light: 'text-gray-600',
@@ -29,26 +29,27 @@ const textVariants = cva('text-gray-900', {
   },
   defaultVariants: {
     variant: 'body-md',
-    textColor: 'default',
+    colour: 'default',
     align: 'left',
   },
 });
 
 export interface TextProps
-  extends React.HTMLAttributes<HTMLParagraphElement>,
+  extends Omit<React.HTMLAttributes<HTMLParagraphElement>, 'color'>,
     VariantProps<typeof textVariants> {
   as?: React.ElementType;
 }
 
 const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
   (
-    { className, variant, textColor, align, as: Component = 'p', ...props },
+    { className, variant, colour, align, as: Component = 'p', ...props },
     ref
   ) => {
     return (
       <Component
         className={cn(
-          textVariants({ variant, textColor, align, className })
+          textVariants({ variant, colour, align }),
+          className
         )}
         ref={ref}
         {...props}

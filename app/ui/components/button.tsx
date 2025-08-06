@@ -30,18 +30,19 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   href?: string;
+  unstyled?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, asChild: _asChild = false, href, ...props },
+    { className, variant, size, asChild: _asChild = false, href, unstyled = false, ...props },
     ref
   ) => {
     if (href) {
       return (
         <Link
           to={href}
-          className={cn(buttonVariants({ variant, size, className }))}
+          className={unstyled ? className : cn(buttonVariants({ variant, size, className }))}
         >
           {props.children}
         </Link>
@@ -50,7 +51,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={unstyled ? className : cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       />

@@ -22,21 +22,21 @@ export default function CTASection({
         <Text
           as="h2"
           variant="heading-2"
-          textColor="white"
+          colour="white"
           className="mb-4 uppercase tracking-wide"
         >
           {title}
         </Text>
         <Text
           as="h3"
-          textColor="white"
+          colour="white"
           className="mb-6"
         >
           {subtitle}
         </Text>
         <Text
           variant="body-lg"
-          textColor="white"
+          colour="white"
           className="mb-8 leading-relaxed opacity-90"
         >
           {description}
