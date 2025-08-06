@@ -15,4 +15,5 @@ export default [
   route('contactologia', 'routes/contactologia.tsx'),
   route('examen-visual', 'routes/examen-visual.tsx'),
   route('blog', 'routes/blog.tsx'),
+  route('contacto', 'routes/contacto.tsx'),
 ] satisfies RouteConfig;
