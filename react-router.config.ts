@@ -3,7 +3,7 @@ import { getBlogPosts } from './app/ui/lib/blog';
 
 export default {
   ssr: false, // Disable SSR for static prerendering
-  basename: '/',
+  // basename: '/',
   async prerender() {
     const blogPosts = getBlogPosts();
     const blogRoutes = blogPosts.map((post) => `/blog/${post.slug}`);
