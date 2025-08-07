@@ -94,7 +94,7 @@ export default function DateTimeSelection() {
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link
-              to="/book/"
+              to="/book"
               className="text-blue-600 hover:text-blue-800 flex items-center gap-2 transition-colors"
             >
               ← Volver
@@ -196,7 +196,7 @@ export default function DateTimeSelection() {
         {/* Action Buttons */}
         <div className="flex items-center justify-between mt-8">
           <Link
-            to="/book/"
+            to="/book"
             className="px-6 py-3 text-gray-600 hover:text-gray-800 transition-colors"
           >
             Volver

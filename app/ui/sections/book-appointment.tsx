@@ -27,7 +27,7 @@ export default function BookAppointment({
         </Text>
         <Button
           variant="primary"
-          href="/book/"
+          href="/book"
           className="min-h-[44px] min-w-[44px] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
         >
           {buttonText}

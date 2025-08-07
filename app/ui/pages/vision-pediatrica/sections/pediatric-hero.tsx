@@ -36,7 +36,7 @@ export default function PediatricHero({
             >
               {description}
             </Text>
-            <Button href="/book/" variant="primary">
+            <Button href="/book" variant="primary">
               Reservar Cita
             </Button>
           </div>

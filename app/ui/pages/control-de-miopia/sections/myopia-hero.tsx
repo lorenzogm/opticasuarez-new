@@ -39,7 +39,7 @@ export default function MyopiaHero({
             >
               {description}
             </Text>
-            <Button variant="primary" href="/book/">
+            <Button variant="primary" href="/book">
               Solicitar Información
             </Button>
           </div>

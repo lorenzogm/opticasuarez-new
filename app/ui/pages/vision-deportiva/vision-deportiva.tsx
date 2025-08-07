@@ -29,7 +29,7 @@ function VisionDeportivaHero() {
         <Button
           variant="primary"
           className="bg-white text-blue-600 hover:bg-blue-50"
-          href="/book/"
+          href="/book"
         >
           RESERVAR EVALUACIÓN
         </Button>
