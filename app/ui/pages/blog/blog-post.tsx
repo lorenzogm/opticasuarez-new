@@ -8,6 +8,8 @@ interface BlogPostProps {
 }
 
 function parseMarkdownToHTML(markdown: string): string {
+  const basePath = import.meta.env.PROD ? '/opticasuarez-new' : '';
+  
   return markdown
     .replace(/^# .+$/gm, '') // Remove h1 headers since we have title in hero
     .replace(
@@ -26,10 +28,19 @@ function parseMarkdownToHTML(markdown: string): string {
       /\*\*(.+?)\*\*/g,
       '<strong class="font-bold text-gray-900">$1</strong>'
     )
+    // Handle inline images
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, src) => {
+      const imageSrc = src.startsWith('/') ? `${basePath}${src}` : src;
+      return `<div class="my-8"><img src="${imageSrc}" alt="${alt}" class="w-full h-64 object-cover rounded-lg shadow-lg mx-auto" /></div>`;
+    })
     .replace(/^- (.+)$/gm, '<li class="mb-2 text-gray-700">$1</li>')
     .replace(/^(\d+)\. (.+)$/gm, '<li class="mb-2 text-gray-700">$2</li>')
     .split('\n')
     .map((line) => {
+      // Handle inline images
+      if (line.trim().startsWith('<div class="my-8"><img')) {
+        return line;
+      }
       // Handle list items
       if (line.trim().startsWith('<li')) {
         return line;

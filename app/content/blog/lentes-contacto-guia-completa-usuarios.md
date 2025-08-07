@@ -14,40 +14,17 @@ Las lentes de contacto han revolucionado la forma en que corregimos los problema
 
 ## ¿Por qué elegir lentes de contacto?
 
-### Ventajas sobre las gafas tradicionales
+Las lentes de contacto ofrecen un campo visual completo sin las limitaciones del marco de las gafas, proporcionando libertad de movimiento ideal para deportes y actividades físicas. Desde el punto de vista estético, mantienen la apariencia natural sin alterar la imagen personal, mientras que desde el punto de vista práctico, ofrecen comodidad climática al no empañarse ni mojarse con la lluvia, y permiten usar gafas de sol normales cuando sea necesario.
 
-- **Campo visual completo**: Sin limitaciones del marco
-- **Libertad de movimiento**: Ideales para deportes y actividades
-- **Estética**: Apariencia natural sin alterar tu imagen
-- **Comodidad climática**: No se empañan ni se mojan con la lluvia
-- **Versatilidad**: Permiten usar gafas de sol normales
+![Tipos de lentes de contacto](/ blog/lentes-contacto-tipos.jpg)
 
-### Beneficios específicos
-
-- **Corrección óptica superior**: Menos distorsiones periféricas
-- **Estabilidad visual**: Se mueven con el ojo
-- **Ausencia de reflejos**: Mayor nitidez visual
-- **Autoestima**: Confianza en la apariencia personal
+La corrección óptica que proporcionan es superior a las gafas tradicionales, con menos distorsiones periféricas gracias a que se mueven con el ojo, proporcionando estabilidad visual y ausencia de reflejos molestos. Todo esto contribuye a una mayor nitidez visual y a un aumento de la autoestima y confianza en la apariencia personal.
 
 ## Tipos de lentes de contacto
 
 ### Según el material
 
-#### Lentes blandas
-
-**Material**: Hidrogel o hidrogel de silicona
-**Características:**
-
-- Mayor comodidad inicial
-- Fácil adaptación
-- Menor riesgo de pérdida
-- Variedad de frecuencias de reemplazo
-
-**Ideales para:**
-
-- Usuarios principiantes
-- Uso ocasional
-- Actividades deportivas
+Las lentes blandas, fabricadas con hidrogel o hidrogel de silicona, ofrecen mayor comodidad inicial y fácil adaptación, con menor riesgo de pérdida y variedad de frecuencias de reemplazo. Son ideales para usuarios principiantes, uso ocasional y actividades deportivas, ya que se adaptan mejor a los movimientos bruscos y cambios de posición.
 - Personas con ojos sensibles
 
 #### Lentes rígidas permeables al gas (RPG)
