@@ -38,7 +38,7 @@ El cristal mineral ofrece excelente resistencia a rayones y claridad óptica sup
 
 ## Mitos y realidades sobre las gafas de sol
 
-Es importante desmitificar algunas creencias erróneas sobre la protección solar. Muchas personas piensan que los cristales más oscuros protegen más, pero la realidad es que el color no determina la protección UV. Unas gafas transparentes con filtro UV adecuado protegen mucho más que unas oscuras sin este filtro. 
+Es importante desmitificar algunas creencias erróneas sobre la protección solar. Muchas personas piensan que los cristales más oscuros protegen más, pero la realidad es que el color no determina la protección UV. Unas gafas transparentes con filtro UV adecuado protegen mucho más que unas oscuras sin este filtro.
 
 ![Cuidados de gafas de sol](/ blog/proteccion-solar-cuidados.jpg)
 

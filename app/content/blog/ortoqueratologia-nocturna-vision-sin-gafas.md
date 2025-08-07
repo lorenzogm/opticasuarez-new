@@ -31,6 +31,7 @@ La ortoqueratología es más efectiva en casos de miopía hasta -6.00 dioptrías
 Los niños y adolescentes entre 8 y 16 años son candidatos excepcionales, ya que obtienen ventajas específicas como el control de la progresión de miopía, libertad total para actividades deportivas, desarrollo de responsabilidad en el cuidado personal, y prevención de miopía alta en la adultez.
 
 Los adultos jóvenes también se benefician enormemente, especialmente aquellos con profesiones que tienen restricciones para el uso de gafas, deportistas de alto rendimiento que requieren visión sin limitaciones, y personas que buscan independencia de corrección óptica durante el día. Para tener éxito con la ortoqueratología, es fundamental tener buena higiene personal, capacidad de seguir instrucciones precisas, motivación para el uso nocturno constante, y compromiso con el seguimiento profesional regular.
+
 - Personas con estilo de vida activo
 - Intolerancia a lentes de contacto diurnas
 

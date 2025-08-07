@@ -24,7 +24,7 @@ El estilo de vida moderno ha provocado un aumento significativo en la incidencia
 
 ## La importancia del control temprano
 
-Controlar la progresión de la miopía durante la infancia es crucial para la salud visual a largo plazo. Las complicaciones asociadas con la miopía alta incluyen un mayor riesgo de desprendimiento de retina, desarrollo de glaucoma con incremento del riesgo en la edad adulta, formación de cataratas tempranas, y complicaciones retinianas como la degeneración macular. 
+Controlar la progresión de la miopía durante la infancia es crucial para la salud visual a largo plazo. Las complicaciones asociadas con la miopía alta incluyen un mayor riesgo de desprendimiento de retina, desarrollo de glaucoma con incremento del riesgo en la edad adulta, formación de cataratas tempranas, y complicaciones retinianas como la degeneración macular.
 
 Un control efectivo de la miopía significa una menor dependencia de corrección óptica, mejor rendimiento académico y deportivo para el niño, y una significativa reducción de limitaciones futuras en su vida adulta.
 

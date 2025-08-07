@@ -25,6 +25,7 @@ La corrección óptica que proporcionan es superior a las gafas tradicionales, c
 ### Según el material
 
 Las lentes blandas, fabricadas con hidrogel o hidrogel de silicona, ofrecen mayor comodidad inicial y fácil adaptación, con menor riesgo de pérdida y variedad de frecuencias de reemplazo. Son ideales para usuarios principiantes, uso ocasional y actividades deportivas, ya que se adaptan mejor a los movimientos bruscos y cambios de posición.
+
 - Personas con ojos sensibles
 
 #### Lentes rígidas permeables al gas (RPG)
