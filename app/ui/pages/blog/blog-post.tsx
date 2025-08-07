@@ -76,7 +76,7 @@ export default function BlogPost({ post }: BlogPostProps) {
       <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16 px-4 sm:px-6">
         <div className="container mx-auto max-w-4xl">
           <Link
-            to="/blog"
+            to="/blog/"
             className="inline-flex items-center text-blue-200 hover:text-white mb-6 transition-colors"
           >
             ← Volver al blog
@@ -154,7 +154,7 @@ export default function BlogPost({ post }: BlogPostProps) {
             Descubre más artículos sobre salud visual, cuidado de los ojos y
             novedades en óptica en nuestro blog.
           </p>
-          <Link to="/blog">
+          <Link to="/blog/">
             <Button variant="primary">Ver más artículos</Button>
           </Link>
         </div>

@@ -38,25 +38,25 @@ export default function GlobalNavigation() {
               Inicio
             </Link>
             <Link
-              to="/quienes-somos"
+              to="/quienes-somos/"
               className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
             >
               Quienes Somos
             </Link>
             <Link
-              to="/servicios"
+              to="/servicios/"
               className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
             >
               Servicios
             </Link>
             <Link
-              to="/blog"
+              to="/blog/"
               className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
             >
               Blog
             </Link>
             <Link
-              to="/contacto"
+              to="/contacto/"
               className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
             >
               Contacto
@@ -120,28 +120,28 @@ export default function GlobalNavigation() {
                 Inicio
               </Link>
               <Link
-                to="/quienes-somos"
+                to="/quienes-somos/"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors duration-200"
                 onClick={closeMenu}
               >
                 Quienes Somos
               </Link>
               <Link
-                to="/servicios"
+                to="/servicios/"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors duration-200"
                 onClick={closeMenu}
               >
                 Servicios
               </Link>
               <Link
-                to="/blog"
+                to="/blog/"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors duration-200"
                 onClick={closeMenu}
               >
                 Blog
               </Link>
               <Link
-                to="/contacto"
+                to="/contacto/"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors duration-200"
                 onClick={closeMenu}
               >
