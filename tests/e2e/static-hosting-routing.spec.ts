@@ -101,7 +101,7 @@ test.describe('Static Hosting Routing Issues', () => {
         expect(pageTitle).toContain(title);
         
       } catch (error) {
-        console.log(`✗ Route ${route} failed: ${error.message}`);
+        console.log(`✗ Route ${route} failed: ${error instanceof Error ? error.message : String(error)}`);
         throw error;
       }
     }

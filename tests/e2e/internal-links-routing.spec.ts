@@ -99,7 +99,7 @@ test.describe('Internal Links Routing Issues', () => {
     
     // Add a marker to track if page reloads
     await page.evaluate(() => {
-      window.testMarker = 'before-reload';
+      (window as any).testMarker = 'before-reload';
     });
     
     // Reload the page
@@ -109,7 +109,7 @@ test.describe('Internal Links Routing Issues', () => {
     await expect(page).toHaveURL('/servicios');
     
     // Marker should be gone after reload (page was actually reloaded)
-    const marker = await page.evaluate(() => window.testMarker);
+    const marker = await page.evaluate(() => (window as any).testMarker);
     expect(marker).toBeUndefined();
     
     // Page should still work after reload
