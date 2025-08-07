@@ -7,7 +7,7 @@ export default {
   async prerender() {
     const blogPosts = getBlogPosts();
     const blogRoutes = blogPosts.map((post) => `/blog/${post.slug}`);
-    
+
     // Return list of URLs to prerender at build time for static hosting
     // This generates static HTML files that match the navigation link structure
     return [
