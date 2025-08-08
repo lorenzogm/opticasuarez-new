@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Booking System', () => {
   // Booking routes are currently disabled - replaced with WhatsApp integration
   // These tests are skipped until booking functionality is re-enabled
-  
+
   test.skip('should complete the booking flow through all steps', async ({
     page,
   }) => {
@@ -116,7 +116,9 @@ test.describe('Booking System', () => {
   });
 
   // New test for WhatsApp booking functionality
-  test('should have WhatsApp booking links on contact page', async ({ page }) => {
+  test('should have WhatsApp booking links on contact page', async ({
+    page,
+  }) => {
     await page.goto('/contacto');
 
     // Check that we're on the contact page
@@ -125,7 +127,7 @@ test.describe('Booking System', () => {
 
     // Check for WhatsApp links (multiple links expected - just verify at least one exists)
     await expect(page.locator('a[href*="whatsapp.com"]').first()).toBeVisible();
-    
+
     // Verify the count of WhatsApp links is what we expect
     await expect(page.locator('a[href*="whatsapp.com"]')).toHaveCount(3);
   });
