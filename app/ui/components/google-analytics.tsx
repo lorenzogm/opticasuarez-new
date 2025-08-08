@@ -2,7 +2,9 @@ interface GoogleAnalyticsProps {
   measurementId?: string;
 }
 
-export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
+export default function GoogleAnalytics({
+  measurementId,
+}: GoogleAnalyticsProps) {
   // If no measurement ID is provided, don't render anything
   if (!measurementId) {
     return null;

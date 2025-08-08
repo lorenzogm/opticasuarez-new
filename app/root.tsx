@@ -49,9 +49,8 @@ export function meta() {
 }
 
 export default function App() {
-  // TODO: Replace with actual Google Analytics Measurement ID
-  // Get this from Google Analytics 4 property settings
-  const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || '';
+  // Google Analytics 4 Measurement ID
+  const GA_MEASUREMENT_ID = 'G-5PKC2Z5L3G';
 
   return (
     <html lang="en">

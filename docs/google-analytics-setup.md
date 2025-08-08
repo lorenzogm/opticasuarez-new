@@ -12,12 +12,15 @@ This project has Google Analytics 4 (GA4) integration ready to use. Follow these
 ## 2. Configure the Measurement ID
 
 ### For Development:
+
 Create a `.env` file in the project root:
+
 ```
 VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 ### For Production:
+
 Set the environment variable `VITE_GA_MEASUREMENT_ID` in your deployment platform.
 
 ## 3. Verify Installation
