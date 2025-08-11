@@ -4,6 +4,7 @@ import GlobalNavigation from './ui/components/global-navigation';
 import GoogleAnalytics from './ui/components/google-analytics';
 import { WebsiteSchema, OrganizationSchema } from './ui/components/structured-data';
 import { generatePageKeywords, generateMetaKeywords } from './ui/lib/seo-keywords';
+import { CartProvider } from './context/cart-context';
 
 export function meta() {
   const homeKeywords = generatePageKeywords('home');
@@ -77,8 +78,10 @@ export default function App() {
         <OrganizationSchema />
       </head>
       <body>
-        <GlobalNavigation />
-        <Outlet />
+        <CartProvider>
+          <GlobalNavigation />
+          <Outlet />
+        </CartProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
