@@ -18,4 +18,9 @@ export default [
   route('blog', 'routes/blog.tsx'),
   route('blog/:slug', 'routes/blog.$slug.tsx'),
   route('contacto', 'routes/contacto.tsx'),
+  // Product routes
+  route('productos', 'routes/productos.tsx'),
+  route('productos/:id', 'routes/productos.$id.tsx'),
+  route('carrito', 'routes/carrito.tsx'),
+  route('checkout', 'routes/checkout.tsx'),
 ] satisfies RouteConfig;
