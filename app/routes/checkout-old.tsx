@@ -123,9 +123,6 @@ export default function Checkout() {
                     </label>
                     <input
                       type="text"
-                      name="nombre"
-                      value={formData.nombre}
-                      onChange={handleInputChange}
                       className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
@@ -136,9 +133,6 @@ export default function Checkout() {
                     </label>
                     <input
                       type="text"
-                      name="apellidos"
-                      value={formData.apellidos}
-                      onChange={handleInputChange}
                       className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
@@ -151,9 +145,6 @@ export default function Checkout() {
                   </label>
                   <input
                     type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
@@ -165,9 +156,6 @@ export default function Checkout() {
                   </label>
                   <input
                     type="tel"
-                    name="telefono"
-                    value={formData.telefono}
-                    onChange={handleInputChange}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
@@ -179,9 +167,6 @@ export default function Checkout() {
                   </label>
                   <input
                     type="text"
-                    name="direccion"
-                    value={formData.direccion}
-                    onChange={handleInputChange}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
@@ -194,9 +179,6 @@ export default function Checkout() {
                     </label>
                     <input
                       type="text"
-                      name="ciudad"
-                      value={formData.ciudad}
-                      onChange={handleInputChange}
                       className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
@@ -207,9 +189,6 @@ export default function Checkout() {
                     </label>
                     <input
                       type="text"
-                      name="codigoPostal"
-                      value={formData.codigoPostal}
-                      onChange={handleInputChange}
                       className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
@@ -220,9 +199,6 @@ export default function Checkout() {
                     </label>
                     <input
                       type="text"
-                      name="provincia"
-                      value={formData.provincia}
-                      onChange={handleInputChange}
                       className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
@@ -305,7 +281,6 @@ export default function Checkout() {
               
               <div className="mt-4 text-xs text-gray-500 text-center">
                 <p>Tu pago está protegido por SSL y procesado de forma segura.</p>
-                <p className="mt-1">Se utilizará la integración con Redsys para el procesamiento del pago.</p>
               </div>
             </div>
           </div>
