@@ -62,3 +62,10 @@ playwright/.cache/
 
 # Image backups
 public/images/blog-backup/
+*-old.jpg
+*-old.webp
+
+# Generated sitemaps (now dynamic)
+sitemap.xml
+public/sitemap.xml
+build/client/sitemap.xml
