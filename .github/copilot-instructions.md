@@ -11,11 +11,13 @@ npm run check
 ```
 
 This single command executes:
+
 - `npm run typecheck` - TypeScript type checking
 - `npm run lint` - ESLint code quality checks
 - `npm run format` - Prettier code formatting validation
 
 If any issues are found, use the fix commands:
+
 - `npm run lint:fix` - Auto-fix ESLint issues
 - `npm run format:fix` - Auto-fix Prettier formatting
 
