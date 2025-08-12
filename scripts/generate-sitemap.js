@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { writeFileSync } from 'fs';
+import { writeFileSync, readdirSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -10,32 +10,126 @@ const __dirname = dirname(__filename);
 // Get the root directory (one level up from scripts)
 const rootDir = join(__dirname, '..');
 
-// Define all routes based on the prerender output we saw during build
-const routes = [
-  '/',
-  '/blog',
-  '/quienes-somos', 
-  '/servicios',
-  '/vision-deportiva',
-  '/control-de-miopia',
-  '/vision-pediatrica',
-  '/terapia-visual',
-  '/contactologia',
-  '/examen-visual',
-  '/contacto',
-  '/blog/control-miopia-ninos-adolescentes',
-  '/blog/vision-pediatrica-problemas-visuales-infancia',
-  '/blog/lentes-contacto-guia-completa-usuarios',
-  '/blog/terapia-visual-rehabilitacion-funcion-visual',
-  '/blog/ortoqueratologia-nocturna-vision-sin-gafas',
-  '/blog/importancia-examenes-visuales-regulares',
-  '/blog/protege-tus-ojos-del-sol',
-];
+async function getRoutesFromBuildOutput() {
+  try {
+    // Check if build client directory exists (should be the case since this runs in postbuild)
+    const buildClientDir = join(rootDir, 'build', 'client');
+    
+    if (existsSync(buildClientDir)) {
+      const routes = [];
+      
+      // Add root route
+      if (existsSync(join(buildClientDir, 'index.html'))) {
+        routes.push('/');
+      }
+      
+      // Recursively find all prerendered routes by looking for index.html files
+      function findRoutes(dir, basePath = '') {
+        const items = readdirSync(dir, { withFileTypes: true });
+        
+        for (const item of items) {
+          if (item.isDirectory() && item.name !== 'assets' && item.name !== '.vite') {
+            const routePath = `${basePath}/${item.name}`;
+            const subDir = join(dir, item.name);
+            
+            // Check if this directory has an index.html (indicating a route)
+            if (existsSync(join(subDir, 'index.html'))) {
+              routes.push(routePath);
+            }
+            
+            // Recursively check subdirectories
+            findRoutes(subDir, routePath);
+          }
+        }
+      }
+      
+      findRoutes(buildClientDir);
+      
+      return routes.sort();
+    }
+    
+    return [];
+  } catch (error) {
+    console.warn('Could not read routes from build output:', error.message);
+    return [];
+  }
+}
 
-function generateSitemap() {
+async function getRoutesFromConfig() {
+  try {
+    // Import the React Router config to get prerender routes
+    const configPath = join(rootDir, 'react-router.config.ts');
+    const { default: config } = await import(configPath);
+    
+    // Get routes from prerender function
+    if (config.prerender) {
+      const routes = await config.prerender();
+      return routes;
+    }
+    
+    return [];
+  } catch (error) {
+    console.warn('Could not read routes from React Router config:', error.message);
+    return [];
+  }
+}
+
+async function getFallbackRoutes() {
+  try {
+    // Import the blog helper to get blog posts
+    const { getBlogPosts } = await import('../app/ui/lib/blog.ts');
+    const blogPosts = getBlogPosts();
+    const blogRoutes = blogPosts.map((post) => `/blog/${post.slug}`);
+
+    return [
+      '/',
+      '/blog',
+      '/quienes-somos', 
+      '/servicios',
+      '/vision-deportiva',
+      '/control-de-miopia',
+      '/vision-pediatrica',
+      '/terapia-visual',
+      '/contactologia',
+      '/examen-visual',
+      '/contacto',
+      ...blogRoutes,
+    ];
+  } catch (error) {
+    console.warn('Could not read blog posts, using minimal routes:', error.message);
+    return [
+      '/',
+      '/blog',
+      '/quienes-somos', 
+      '/servicios',
+      '/vision-deportiva',
+      '/control-de-miopia',
+      '/vision-pediatrica',
+      '/terapia-visual',
+      '/contactologia',
+      '/examen-visual',
+      '/contacto',
+    ];
+  }
+}
+
+async function generateSitemap() {
   try {
     const baseUrl = 'https://opticasuarezjaen.es';
     const currentDate = new Date().toISOString();
+    
+    // Try to get routes from build output first, then config, then fallback
+    let routes = await getRoutesFromBuildOutput();
+    
+    if (routes.length === 0) {
+      routes = await getRoutesFromConfig();
+    }
+    
+    if (routes.length === 0) {
+      routes = await getFallbackRoutes();
+    }
+    
+    console.log(`Generating sitemap with ${routes.length} routes...`);
     
     // Create XML sitemap
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
