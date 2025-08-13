@@ -1,7 +1,1 @@
-{
-  "functions": {
-    "build/server/index.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
-}
+{}
