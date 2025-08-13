@@ -33,6 +33,8 @@ jobs:
     name: E2E Tests on Preview
     needs: deploy-preview
     if: needs.deploy-preview.outputs.preview-url != ''
+    outputs:
+      test-result: ${{ steps.test-run.outputs.test-result }}
 
     steps:
       - name: Checkout
@@ -51,9 +53,17 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npm run test:e2e
+        id: test-run
+        run: |
+          if npm run test:e2e; then
+            echo "test-result=✅" >> $GITHUB_OUTPUT
+          else
+            echo "test-result=❌" >> $GITHUB_OUTPUT
+            exit 1
+          fi
         env:
           PLAYWRIGHT_BASE_URL: ${{ needs.deploy-preview.outputs.preview-url }}
+        continue-on-error: true
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
@@ -62,3 +72,59 @@ jobs:
           name: playwright-report-preview
           path: playwright-report/
           retention-days: 30
+
+  update-pr-description:
+    runs-on: ubuntu-latest
+    name: Update PR Description
+    needs: [deploy-preview, e2e-tests]
+    if: always() && needs.deploy-preview.outputs.preview-url != ''
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update PR description with deployment info
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { context } = require('@actions/github');
+            
+            // Get current PR description
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            
+            const currentBody = pr.data.body || '';
+            const previewUrl = '${{ needs.deploy-preview.outputs.preview-url }}';
+            const testResult = '${{ needs.e2e-tests.outputs.test-result }}' || '❌';
+            const prTitle = pr.data.title;
+            
+            // Create deployment table
+            const deploymentTable = `
+            ## 🚀 Deployment Status
+            
+            | Title | Preview Link | E2E Tests |
+            |-------|-------------|-----------|
+            | ${prTitle} | [Preview Environment](${previewUrl}) | ${testResult} |
+            `;
+            
+            // Check if deployment table already exists and replace it, otherwise append
+            let newBody;
+            if (currentBody.includes('## 🚀 Deployment Status')) {
+              // Replace existing deployment table
+              const regex = /## 🚀 Deployment Status[\s\S]*?(?=\n##|\n\n##|$)/;
+              newBody = currentBody.replace(regex, deploymentTable.trim());
+            } else {
+              // Append deployment table at the end
+              newBody = currentBody + '\n\n' + deploymentTable.trim();
+            }
+            
+            // Update the PR description
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              body: newBody,
+            });
