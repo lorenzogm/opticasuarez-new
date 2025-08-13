@@ -88,28 +88,28 @@ jobs:
         with:
           script: |
             const { context } = require('@actions/github');
-            
+
             // Get current PR description
             const pr = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.issue.number,
             });
-            
+
             const currentBody = pr.data.body || '';
             const previewUrl = '${{ needs.deploy-preview.outputs.preview-url }}';
             const testResult = '${{ needs.e2e-tests.outputs.test-result }}' || '❌';
             const prTitle = pr.data.title;
-            
+
             // Create deployment table
             const deploymentTable = `
             ## 🚀 Deployment Status
-            
+
             | Title | Preview Link | E2E Tests |
             |-------|-------------|-----------|
             | ${prTitle} | [Preview Environment](${previewUrl}) | ${testResult} |
             `;
-            
+
             // Check if deployment table already exists and replace it, otherwise append
             let newBody;
             if (currentBody.includes('## 🚀 Deployment Status')) {
@@ -120,7 +120,7 @@ jobs:
               // Append deployment table at the end
               newBody = currentBody + '\n\n' + deploymentTable.trim();
             }
-            
+
             // Update the PR description
             await github.rest.pulls.update({
               owner: context.repo.owner,
