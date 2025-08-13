@@ -21,7 +21,7 @@ jobs:
       - name: Deploy to Vercel Preview
         id: deploy
         run: |
-          url=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})
+          url=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --yes)
           echo "preview-url=$url" >> $GITHUB_OUTPUT
           echo "Preview URL: $url"
         env:
