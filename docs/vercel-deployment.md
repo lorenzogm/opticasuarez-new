@@ -12,15 +12,19 @@ To enable the deployment workflows, you need to configure the following secrets 
 2. Create a new token with the necessary permissions
 3. Add it as a repository secret named `VERCEL_TOKEN`
 
-### 2. Link Project to Vercel
+### 2. Vercel Team ID
 
-Run the following command locally in your project directory:
+1. Go to your [Vercel Dashboard](https://vercel.com/dashboard)
+2. Click on your team/organization settings
+3. Copy the Team ID from the settings page
+4. Add it as a repository secret named `VERCEL_TEAM_ID`
 
-```bash
-npx vercel link
-```
+### 3. Vercel Project ID
 
-This will create a `.vercel` directory with project configuration. The project ID and organization ID from this configuration are automatically used by the workflows.
+1. Go to your project in the [Vercel Dashboard](https://vercel.com/dashboard)
+2. Go to Settings tab
+3. Copy the Project ID from the General section
+4. Add it as a repository secret named `VERCEL_PROJECT_ID`
 
 ## Workflow Details
 
@@ -55,15 +59,19 @@ The `vercel.json` file is configured for React Router v7 with:
 
 ## Manual Deployment
 
-You can also deploy manually using the Vercel CLI:
+You can also deploy manually using the Vercel CLI with your team and project IDs:
 
 ```bash
 # Install Vercel CLI
 npm install -g vercel
 
+# Set environment variables
+export VERCEL_ORG_ID=your_team_id
+export VERCEL_PROJECT_ID=your_project_id
+
 # Deploy to preview
-vercel
+vercel --token your_token
 
 # Deploy to production
-vercel --prod
+vercel --prod --token your_token
 ```
