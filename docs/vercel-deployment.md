@@ -26,6 +26,15 @@ To enable the deployment workflows, you need to configure the following secrets 
 3. Copy the Project ID from the General section
 4. Add it as a repository secret named `VERCEL_PROJECT_ID`
 
+### 4. Vercel Automation Bypass Secret
+
+1. Go to your project in the [Vercel Dashboard](https://vercel.com/dashboard)
+2. Go to Settings → Environment Variables
+3. Find or create the `VERCEL_AUTOMATION_BYPASS_SECRET` environment variable
+4. Copy its value and add it as a repository secret named `VERCEL_AUTOMATION_BYPASS_SECRET`
+
+This secret is required for e2e tests to bypass Vercel's protection mechanisms when running against preview deployments.
+
 ## Workflow Details
 
 ### Pull Request Workflow (`.github/workflows/deploy-preview.yml`)
