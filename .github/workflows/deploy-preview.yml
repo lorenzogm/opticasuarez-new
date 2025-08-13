@@ -15,28 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_TEAM_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      - name: Deploy Project Artifacts to Vercel
+      - name: Deploy to Vercel Preview
         id: deploy
         run: |
-          url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          url=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})
           echo "preview-url=$url" >> $GITHUB_OUTPUT
           echo "Preview URL: $url"
         env:
