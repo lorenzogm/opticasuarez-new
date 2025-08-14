@@ -127,15 +127,15 @@ jobs:
             | ${prTitle} | [Preview Environment](${previewUrl}) | ${testResult} |
             `;
 
-            // Check if deployment table already exists and replace it, otherwise append
+            // Check if deployment table already exists and replace it, otherwise prepend at the beginning
             let newBody;
             if (currentBody.includes('## 🚀 Deployment Status')) {
               // Replace existing deployment table
               const regex = /## 🚀 Deployment Status[\s\S]*?(?=\n##|\n\n##|$)/;
               newBody = currentBody.replace(regex, deploymentTable.trim());
             } else {
-              // Append deployment table at the end
-              newBody = currentBody + '\n\n' + deploymentTable.trim();
+              // Prepend deployment table at the beginning
+              newBody = deploymentTable.trim() + '\n\n' + currentBody;
             }
 
             // Update the PR description
