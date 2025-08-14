@@ -64,13 +64,15 @@ jobs:
         run: |
           if npm run test:e2e; then
             echo "test-result=✅" >> $GITHUB_OUTPUT
+            echo "Tests passed successfully"
           else
             echo "test-result=❌" >> $GITHUB_OUTPUT
+            echo "Tests failed"
+            exit 1
           fi
         env:
           PLAYWRIGHT_BASE_URL: ${{ needs.deploy-preview.outputs.preview-url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-        continue-on-error: true
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
@@ -105,7 +107,15 @@ jobs:
 
             const currentBody = pr.data.body || '';
             const previewUrl = '${{ needs.deploy-preview.outputs.preview-url }}';
-            const testResult = '${{ needs.e2e-tests.outputs.test-result }}' || '❌';
+            
+            // Determine test result based on job conclusion
+            let testResult = '❌';
+            if ('${{ needs.e2e-tests.result }}' === 'success') {
+              testResult = '✅';
+            } else if ('${{ needs.e2e-tests.outputs.test-result }}') {
+              testResult = '${{ needs.e2e-tests.outputs.test-result }}';
+            }
+            
             const prTitle = pr.data.title;
 
             // Create deployment table

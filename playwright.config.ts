@@ -24,7 +24,8 @@ export default defineConfig({
     /* Extra HTTP headers to be sent with every request. */
     extraHTTPHeaders: process.env.VERCEL_AUTOMATION_BYPASS_SECRET
       ? {
-          'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
+          'x-vercel-protection-bypass':
+            process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
         }
       : {},
   },
