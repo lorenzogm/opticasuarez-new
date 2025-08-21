@@ -5,15 +5,39 @@ import { Button } from '../../components/button';
 import { Text } from '../../components/text';
 
 const appointmentTypes = {
-  'visual-stress': 'Apoyo para Estrés Visual',
-  'vision-loss-support': 'Apoyo por Pérdida de Visión',
-  'low-vision-rehabilitation': 'Rehabilitación de Baja Visión',
+  'phone-consultation': 'Cita telefónica',
+  'refraction-exam': 'Cita refracción',
+  'visual-efficiency-eval': 'Cita Evaluación de eficacia visual',
+  'child-exam': 'Cita Examen Infantil',
+  'contact-lens': 'Cita Contactología',
+  'sports-vision': 'Cita Visión Deportiva',
 };
 
 const appointmentDurations = {
-  'visual-stress': '45 minutos',
-  'vision-loss-support': '60 minutos',
-  'low-vision-rehabilitation': '90 minutos',
+  'phone-consultation': '10 minutos',
+  'refraction-exam': '30 minutos',
+  'visual-efficiency-eval': '60 minutos',
+  'child-exam': '60 minutos',
+  'contact-lens': '60 minutos',
+  'sports-vision': '60 minutos',
+};
+
+const locations = {
+  centro: {
+    name: 'Óptica Suárez Centro',
+    address: 'Paseo de la Estación 12, Jaén (23003-Jaén)',
+    email: 'centro@opticasuarezjaen.es',
+  },
+  bulevar: {
+    name: 'Óptica Suárez Bulevar', 
+    address: 'Calle Canarias 6, Jaén (23009 - Jaén)',
+    email: 'bulevar@opticasuarezjaen.es',
+  },
+};
+
+const preferences = {
+  morning: 'Por la mañana',
+  afternoon: 'Por las tardes',
 };
 
 export default function Confirmation() {
@@ -22,10 +46,15 @@ export default function Confirmation() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const appointmentType = searchParams.get('type') || '';
+  const location = searchParams.get('location') || '';
   const dateParam = searchParams.get('date');
   const time = searchParams.get('time') || '';
   const name = searchParams.get('name') || '';
+  const age = searchParams.get('age') || '';
   const phone = searchParams.get('phone') || '';
+  const email = searchParams.get('email') || '';
+  const preference = searchParams.get('preference') || '';
+  const observations = searchParams.get('observations') || '';
 
   const selectedDate = dateParam ? new Date(dateParam) : null;
 
@@ -43,9 +72,12 @@ export default function Confirmation() {
 
     try {
       // Prepare the booking data
+      const selectedLocation = locations[location as keyof typeof locations];
       const bookingData = {
         appointmentType:
           appointmentTypes[appointmentType as keyof typeof appointmentTypes],
+        location: selectedLocation?.name || 'No especificado',
+        locationAddress: selectedLocation?.address || '',
         date: selectedDate ? formatDate(selectedDate) : '',
         time: time,
         duration:
@@ -53,7 +85,11 @@ export default function Confirmation() {
             appointmentType as keyof typeof appointmentDurations
           ],
         name: name,
+        age: age,
         phone: phone,
+        email: email,
+        preference: preferences[preference as keyof typeof preferences] || preference,
+        observations: observations,
         timestamp: new Date().toISOString(),
       };
 
@@ -67,18 +103,27 @@ Nueva cita reservada en Óptica Suárez
 Detalles de la cita:
 - Tipo de servicio: ${bookingData.appointmentType}
 - Duración: ${bookingData.duration}
+- Centro: ${bookingData.location}
+- Dirección: ${bookingData.locationAddress}
 - Fecha: ${bookingData.date}
 - Hora: ${bookingData.time}
 
 Datos del cliente:
 - Nombre: ${bookingData.name}
+- Edad: ${bookingData.age} años
 - Teléfono: ${bookingData.phone}
+- Email: ${bookingData.email}
+- Preferencia de horario: ${bookingData.preference}
+${bookingData.observations ? `- Observaciones: ${bookingData.observations}` : ''}
 
 Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
       `;
 
-      // Log the email content (in a real app, this would be sent to optica@lorenzogm.com)
-      console.log('Email que se enviaría a optica@lorenzogm.com:');
+      // Get the correct email based on location
+      const destinationEmail = selectedLocation?.email || 'optica@lorenzogm.com';
+      
+      // Log the email content (in a real app, this would be sent to the location-specific email)
+      console.log(`Email que se enviaría a ${destinationEmail}:`);
       console.log(emailContent);
 
       // Simulate API call delay
@@ -136,7 +181,7 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link
-              to={`/book/step3?type=${appointmentType}&date=${dateParam}&time=${time}`}
+              to={`/book/step4?type=${appointmentType}&location=${location}&date=${dateParam}&time=${time}&name=${name}&age=${age}&phone=${phone}&email=${email}&preference=${preference}&observations=${observations}`}
               className="text-blue-600 hover:text-blue-800 flex items-center gap-2 transition-colors"
             >
               ← Volver
@@ -157,7 +202,7 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Progress Indicator */}
         <div className="mb-8">
-          <ProgressIndicator currentStep={4} totalSteps={4} />
+          <ProgressIndicator currentStep={5} totalSteps={5} />
           <div className="text-center mt-4">
             <Text as="h2" variant="heading-3" className="text-gray-900">
               Confirmar cita
@@ -197,6 +242,17 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
               </p>
             </div>
 
+            {/* Location Details */}
+            <div className="border-b border-gray-200 pb-4">
+              <h4 className="font-medium text-gray-900 mb-2">Centro</h4>
+              <p className="text-gray-700">
+                {locations[location as keyof typeof locations]?.name || 'No especificado'}
+              </p>
+              <p className="text-sm text-gray-500">
+                {locations[location as keyof typeof locations]?.address || ''}
+              </p>
+            </div>
+
             {/* Date and Time */}
             <div className="border-b border-gray-200 pb-4">
               <h4 className="font-medium text-gray-900 mb-2">Fecha y hora</h4>
@@ -207,13 +263,27 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
             </div>
 
             {/* Contact Details */}
-            <div>
+            <div className="border-b border-gray-200 pb-4">
               <h4 className="font-medium text-gray-900 mb-2">
                 Datos de contacto
               </h4>
-              <p className="text-gray-700">{name}</p>
+              <p className="text-gray-700">{name} ({age} años)</p>
               <p className="text-gray-700">{phone}</p>
+              <p className="text-gray-700">{email}</p>
+              <p className="text-sm text-gray-500">
+                Preferencia: {preferences[preference as keyof typeof preferences] || preference}
+              </p>
             </div>
+
+            {/* Observations */}
+            {observations && (
+              <div>
+                <h4 className="font-medium text-gray-900 mb-2">Observaciones</h4>
+                <p className="text-gray-700 text-sm bg-gray-50 p-3 rounded-lg">
+                  {observations}
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Important Information */}
@@ -237,7 +307,7 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
         {/* Action Buttons */}
         <div className="flex items-center justify-between mt-8">
           <Button
-            href={`/book/step3?type=${appointmentType}&date=${dateParam}&time=${time}`}
+            href={`/book/step4?type=${appointmentType}&location=${location}&date=${dateParam}&time=${time}&name=${name}&age=${age}&phone=${phone}&email=${email}&preference=${preference}&observations=${observations}`}
             variant="secondary"
           >
             Volver

@@ -44,15 +44,19 @@ const timeSlots = [
 ];
 
 const appointmentTypes = {
-  'visual-stress': 'Apoyo para Estrés Visual',
-  'vision-loss-support': 'Apoyo por Pérdida de Visión',
-  'low-vision-rehabilitation': 'Rehabilitación de Baja Visión',
+  'phone-consultation': 'Cita telefónica',
+  'refraction-exam': 'Cita refracción',
+  'visual-efficiency-eval': 'Cita Evaluación de eficacia visual',
+  'child-exam': 'Cita Examen Infantil',
+  'contact-lens': 'Cita Contactología',
+  'sports-vision': 'Cita Visión Deportiva',
 };
 
 export default function DateTimeSelection() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const appointmentType = searchParams.get('type') || '';
+  const location = searchParams.get('location') || '';
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
@@ -79,9 +83,10 @@ export default function DateTimeSelection() {
     if (selectedDate && selectedTime) {
       const params = new URLSearchParams();
       params.set('type', appointmentType);
+      params.set('location', location);
       params.set('date', selectedDate.toISOString());
       params.set('time', selectedTime);
-      navigate(`/book/step3?${params.toString()}`);
+      navigate(`/book/step4?${params.toString()}`);
     }
   };
 
@@ -94,7 +99,7 @@ export default function DateTimeSelection() {
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link
-              to="/book"
+              to={`/book/step2?type=${appointmentType}`}
               className="text-blue-600 hover:text-blue-800 flex items-center gap-2 transition-colors"
             >
               ← Volver
@@ -113,7 +118,7 @@ export default function DateTimeSelection() {
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Progress Indicator */}
         <div className="mb-8">
-          <ProgressIndicator currentStep={2} totalSteps={4} />
+          <ProgressIndicator currentStep={3} totalSteps={5} />
           <div className="text-center mt-4">
             <h2 className="text-2xl font-bold text-gray-900">
               Selecciona fecha y hora

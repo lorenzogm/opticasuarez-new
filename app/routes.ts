@@ -2,11 +2,12 @@ import { type RouteConfig, index, route } from '@react-router/dev/routes';
 
 export default [
   index('routes/home.tsx'),
-  // Booking routes temporarily hidden
-  // route('book', 'routes/book.tsx'),
-  // route('book/step2', 'routes/book-step2.tsx'),
-  // route('book/step3', 'routes/book-step3.tsx'),
-  // route('book/step4', 'routes/book-step4.tsx'),
+  // Booking routes
+  route('book', 'routes/book.tsx'),
+  route('book/step2', 'routes/book-step2.tsx'),
+  route('book/step3', 'routes/book-step3.tsx'),
+  route('book/step4', 'routes/book-step4.tsx'),
+  route('book/step5', 'routes/book-step5.tsx'),
   route('quienes-somos', 'routes/quienes-somos.tsx'),
   route('servicios', 'routes/servicios.tsx'),
   route('vision-deportiva', 'routes/vision-deportiva.tsx'),

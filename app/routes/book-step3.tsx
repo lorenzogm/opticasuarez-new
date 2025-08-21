@@ -1,15 +1,15 @@
-import ContactDetails from '../ui/pages/book/contact-details';
+import DateTimeSelection from '../ui/pages/book/date-time';
 
 export function meta() {
   return [
-    { title: 'Datos de Contacto - Óptica Suárez' },
+    { title: 'Seleccionar Fecha y Hora - Óptica Suárez' },
     {
       name: 'description',
-      content: 'Introduce tus datos de contacto para la cita en Óptica Suárez.',
+      content: 'Selecciona la fecha y hora para tu cita en Óptica Suárez.',
     },
   ];
 }
 
 export default function BookStep3() {
-  return <ContactDetails />;
+  return <DateTimeSelection />;
 }
