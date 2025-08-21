@@ -167,7 +167,7 @@ export default function ContactDetails() {
       params.set('email', email.trim());
       params.set('preference', preference);
       params.set('observations', observations.trim());
-      navigate(`/book/step5?${params.toString()}`);
+      navigate(`/cita/confirmacion?${params.toString()}`);
     }
   };
 
@@ -190,7 +190,7 @@ export default function ContactDetails() {
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link
-              to={`/book/step3?type=${appointmentType}&location=${location}`}
+              to={`/cita/horario?type=${appointmentType}&location=${location}`}
               className="text-blue-600 hover:text-blue-800 flex items-center gap-2 transition-colors"
             >
               ← Volver
@@ -406,7 +406,7 @@ export default function ContactDetails() {
         {/* Action Buttons */}
         <div className="flex items-center justify-between mt-8">
           <Link
-            to={`/book/step3?type=${appointmentType}&location=${location}`}
+            to={`/cita/horario?type=${appointmentType}&location=${location}`}
             className="px-6 py-3 text-gray-600 hover:text-gray-800 transition-colors"
           >
             Volver

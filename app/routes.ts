@@ -2,12 +2,15 @@ import { type RouteConfig, index, route } from '@react-router/dev/routes';
 
 export default [
   index('routes/home.tsx'),
+  // API routes
+  route('api/appointments', 'routes/api/appointments.tsx'),
+  route('api/init-db', 'routes/api/init-db.tsx'),
   // Booking routes
-  route('book', 'routes/book.tsx'),
-  route('book/step2', 'routes/book-step2.tsx'),
-  route('book/step3', 'routes/book-step3.tsx'),
-  route('book/step4', 'routes/book-step4.tsx'),
-  route('book/step5', 'routes/book-step5.tsx'),
+  route('cita', 'routes/cita.tsx'),
+  route('cita/centro', 'routes/cita-centro.tsx'),
+  route('cita/horario', 'routes/cita-horario.tsx'),
+  route('cita/contacto', 'routes/cita-contacto.tsx'),
+  route('cita/confirmacion', 'routes/cita-confirmacion.tsx'),
   route('quienes-somos', 'routes/quienes-somos.tsx'),
   route('servicios', 'routes/servicios.tsx'),
   route('vision-deportiva', 'routes/vision-deportiva.tsx'),

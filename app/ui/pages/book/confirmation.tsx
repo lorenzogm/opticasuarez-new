@@ -71,52 +71,58 @@ export default function Confirmation() {
     setIsSubmitting(true);
 
     try {
-      // Prepare the booking data
+      // Prepare the booking data for database
       const selectedLocation = locations[location as keyof typeof locations];
-      const bookingData = {
-        appointmentType:
-          appointmentTypes[appointmentType as keyof typeof appointmentTypes],
-        location: selectedLocation?.name || 'No especificado',
-        locationAddress: selectedLocation?.address || '',
-        date: selectedDate ? formatDate(selectedDate) : '',
+      const appointmentData = {
+        appointmentType: appointmentType,
+        location: location,
+        date: selectedDate?.toISOString().split('T')[0], // Format as YYYY-MM-DD
         time: time,
-        duration:
-          appointmentDurations[
-            appointmentType as keyof typeof appointmentDurations
-          ],
         name: name,
-        age: age,
+        age: age ? parseInt(age) : null,
         phone: phone,
-        email: email,
-        preference: preferences[preference as keyof typeof preferences] || preference,
-        observations: observations,
-        timestamp: new Date().toISOString(),
+        email: email || null,
+        preference: preference || null,
+        observations: observations || null,
       };
 
-      // Here you would normally send this data to your backend
-      // For now, we'll simulate the email sending
+      // Save appointment to database
+      const response = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(appointmentData),
+      });
 
-      // Create email content
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to save appointment');
+      }
+
+      // Create email content for logging
       const emailContent = `
 Nueva cita reservada en Óptica Suárez
 
 Detalles de la cita:
-- Tipo de servicio: ${bookingData.appointmentType}
-- Duración: ${bookingData.duration}
-- Centro: ${bookingData.location}
-- Dirección: ${bookingData.locationAddress}
-- Fecha: ${bookingData.date}
-- Hora: ${bookingData.time}
+- Tipo de servicio: ${appointmentTypes[appointmentType as keyof typeof appointmentTypes]}
+- Duración: ${appointmentDurations[appointmentType as keyof typeof appointmentDurations]}
+- Centro: ${selectedLocation?.name || 'No especificado'}
+- Dirección: ${selectedLocation?.address || ''}
+- Fecha: ${selectedDate ? formatDate(selectedDate) : ''}
+- Hora: ${time}
 
 Datos del cliente:
-- Nombre: ${bookingData.name}
-- Edad: ${bookingData.age} años
-- Teléfono: ${bookingData.phone}
-- Email: ${bookingData.email}
-- Preferencia de horario: ${bookingData.preference}
-${bookingData.observations ? `- Observaciones: ${bookingData.observations}` : ''}
+- Nombre: ${name}
+- Edad: ${age} años
+- Teléfono: ${phone}
+- Email: ${email}
+- Preferencia de horario: ${preferences[preference as keyof typeof preferences] || preference}
+${observations ? `- Observaciones: ${observations}` : ''}
 
-Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
+Reserva realizada el: ${new Date().toLocaleString('es-ES')}
+ID de cita: ${result.appointmentId}
       `;
 
       // Get the correct email based on location
@@ -125,9 +131,6 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
       // Log the email content (in a real app, this would be sent to the location-specific email)
       console.log(`Email que se enviaría a ${destinationEmail}:`);
       console.log(emailContent);
-
-      // Simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       setIsSubmitted(true);
     } catch (error) {
@@ -181,7 +184,7 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link
-              to={`/book/step4?type=${appointmentType}&location=${location}&date=${dateParam}&time=${time}&name=${name}&age=${age}&phone=${phone}&email=${email}&preference=${preference}&observations=${observations}`}
+              to={`/cita/contacto?type=${appointmentType}&location=${location}&date=${dateParam}&time=${time}&name=${name}&age=${age}&phone=${phone}&email=${email}&preference=${preference}&observations=${observations}`}
               className="text-blue-600 hover:text-blue-800 flex items-center gap-2 transition-colors"
             >
               ← Volver
@@ -307,7 +310,7 @@ Reserva realizada el: ${new Date(bookingData.timestamp).toLocaleString('es-ES')}
         {/* Action Buttons */}
         <div className="flex items-center justify-between mt-8">
           <Button
-            href={`/book/step4?type=${appointmentType}&location=${location}&date=${dateParam}&time=${time}&name=${name}&age=${age}&phone=${phone}&email=${email}&preference=${preference}&observations=${observations}`}
+            href={`/cita/contacto?type=${appointmentType}&location=${location}&date=${dateParam}&time=${time}&name=${name}&age=${age}&phone=${phone}&email=${email}&preference=${preference}&observations=${observations}`}
             variant="secondary"
           >
             Volver

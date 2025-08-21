@@ -10,6 +10,6 @@ export function meta() {
   ];
 }
 
-export default function BookStep2() {
+export default function CitaCentro() {
   return <LocationSelection />;
 }

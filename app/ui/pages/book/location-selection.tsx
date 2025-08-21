@@ -70,7 +70,7 @@ export default function LocationSelection() {
 
   const handleContinue = () => {
     if (selectedLocation) {
-      navigate(`/book/step3?type=${appointmentType}&location=${selectedLocation}`);
+      navigate(`/cita/horario?type=${appointmentType}&location=${selectedLocation}`);
     }
   };
 
@@ -81,7 +81,7 @@ export default function LocationSelection() {
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link
-              to={`/book?type=${appointmentType}`}
+              to={`/cita?type=${appointmentType}`}
               className="text-blue-600 hover:text-blue-800 flex items-center gap-2 transition-colors"
             >
               ← Volver
@@ -171,7 +171,7 @@ export default function LocationSelection() {
 
         {/* Action Buttons */}
         <div className="flex items-center justify-between">
-          <Button href={`/book?type=${appointmentType}`} variant="secondary">
+          <Button href={`/cita?type=${appointmentType}`} variant="secondary">
             Volver
           </Button>
           <Button

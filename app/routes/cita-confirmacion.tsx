@@ -10,6 +10,6 @@ export function meta() {
   ];
 }
 
-export default function BookStep5() {
+export default function CitaConfirmacion() {
   return <Confirmation />;
 }

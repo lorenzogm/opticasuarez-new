@@ -74,7 +74,7 @@ export default function BookAppointment() {
   const handleContinue = () => {
     if (selectedType) {
       // Navigate to step 2 with the selected appointment type
-      navigate(`/book/step2?type=${selectedType}`);
+      navigate(`/cita/centro?type=${selectedType}`);
     }
   };
 

@@ -10,6 +10,6 @@ export function meta() {
   ];
 }
 
-export default function BookStep4() {
+export default function CitaContacto() {
   return <ContactDetails />;
 }
