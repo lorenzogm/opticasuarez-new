@@ -35,9 +35,9 @@ const locations = {
   },
 };
 
-const preferences = {
-  morning: 'Por la mañana',
-  afternoon: 'Por las tardes',
+const periods = {
+  morning: 'Mañana (9:00-12:00)',
+  afternoon: 'Tarde (16:00-19:00)',
 };
 
 export default function Confirmation() {
@@ -48,12 +48,11 @@ export default function Confirmation() {
   const appointmentType = searchParams.get('type') || '';
   const location = searchParams.get('location') || '';
   const dateParam = searchParams.get('date');
-  const time = searchParams.get('time') || '';
+  const period = searchParams.get('period') || '';
   const name = searchParams.get('name') || '';
   const age = searchParams.get('age') || '';
   const phone = searchParams.get('phone') || '';
   const email = searchParams.get('email') || '';
-  const preference = searchParams.get('preference') || '';
   const observations = searchParams.get('observations') || '';
 
   const selectedDate = dateParam ? new Date(dateParam) : null;
@@ -71,37 +70,8 @@ export default function Confirmation() {
     setIsSubmitting(true);
 
     try {
-      // Prepare the booking data for database
+      // Create email content for logging (no database save)
       const selectedLocation = locations[location as keyof typeof locations];
-      const appointmentData = {
-        appointmentType: appointmentType,
-        location: location,
-        date: selectedDate?.toISOString().split('T')[0], // Format as YYYY-MM-DD
-        time: time,
-        name: name,
-        age: age ? parseInt(age) : null,
-        phone: phone,
-        email: email || null,
-        preference: preference || null,
-        observations: observations || null,
-      };
-
-      // Save appointment to database
-      const response = await fetch('/api/appointments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(appointmentData),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to save appointment');
-      }
-
-      // Create email content for logging
       const emailContent = `
 Nueva cita reservada en Óptica Suárez
 
@@ -111,18 +81,16 @@ Detalles de la cita:
 - Centro: ${selectedLocation?.name || 'No especificado'}
 - Dirección: ${selectedLocation?.address || ''}
 - Fecha: ${selectedDate ? formatDate(selectedDate) : ''}
-- Hora: ${time}
+- Horario: ${periods[period as keyof typeof periods] || period}
 
 Datos del cliente:
 - Nombre: ${name}
 - Edad: ${age} años
 - Teléfono: ${phone}
-- Email: ${email}
-- Preferencia de horario: ${preferences[preference as keyof typeof preferences] || preference}
+${email ? `- Email: ${email}` : ''}
 ${observations ? `- Observaciones: ${observations}` : ''}
 
 Reserva realizada el: ${new Date().toLocaleString('es-ES')}
-ID de cita: ${result.appointmentId}
       `;
 
       // Get the correct email based on location
@@ -131,6 +99,9 @@ ID de cita: ${result.appointmentId}
       // Log the email content (in a real app, this would be sent to the location-specific email)
       console.log(`Email que se enviaría a ${destinationEmail}:`);
       console.log(emailContent);
+
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       setIsSubmitted(true);
     } catch (error) {
@@ -184,7 +155,7 @@ ID de cita: ${result.appointmentId}
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link
-              to={`/cita/contacto?type=${appointmentType}&location=${location}&date=${dateParam}&time=${time}&name=${name}&age=${age}&phone=${phone}&email=${email}&preference=${preference}&observations=${observations}`}
+              to={`/cita/contacto?type=${appointmentType}&location=${location}&date=${dateParam}&period=${period}&name=${name}&age=${age}&phone=${phone}${email ? `&email=${email}` : ''}&observations=${observations}`}
               className="text-blue-600 hover:text-blue-800 flex items-center gap-2 transition-colors"
             >
               ← Volver
@@ -262,7 +233,7 @@ ID de cita: ${result.appointmentId}
               {selectedDate && (
                 <p className="text-gray-700">{formatDate(selectedDate)}</p>
               )}
-              <p className="text-gray-700">{time}</p>
+              <p className="text-gray-700">{periods[period as keyof typeof periods] || period}</p>
             </div>
 
             {/* Contact Details */}
@@ -272,10 +243,7 @@ ID de cita: ${result.appointmentId}
               </h4>
               <p className="text-gray-700">{name} ({age} años)</p>
               <p className="text-gray-700">{phone}</p>
-              <p className="text-gray-700">{email}</p>
-              <p className="text-sm text-gray-500">
-                Preferencia: {preferences[preference as keyof typeof preferences] || preference}
-              </p>
+              {email && <p className="text-gray-700">{email}</p>}
             </div>
 
             {/* Observations */}
@@ -310,7 +278,7 @@ ID de cita: ${result.appointmentId}
         {/* Action Buttons */}
         <div className="flex items-center justify-between mt-8">
           <Button
-            href={`/cita/contacto?type=${appointmentType}&location=${location}&date=${dateParam}&time=${time}&name=${name}&age=${age}&phone=${phone}&email=${email}&preference=${preference}&observations=${observations}`}
+            href={`/cita/contacto?type=${appointmentType}&location=${location}&date=${dateParam}&period=${period}&name=${name}&age=${age}&phone=${phone}${email ? `&email=${email}` : ''}&observations=${observations}`}
             variant="secondary"
           >
             Volver

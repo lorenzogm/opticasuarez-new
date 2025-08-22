@@ -2,9 +2,6 @@ import { type RouteConfig, index, route } from '@react-router/dev/routes';
 
 export default [
   index('routes/home.tsx'),
-  // API routes
-  route('api/appointments', 'routes/api/appointments.tsx'),
-  route('api/init-db', 'routes/api/init-db.tsx'),
   // Booking routes
   route('cita', 'routes/cita.tsx'),
   route('cita/centro', 'routes/cita-centro.tsx'),

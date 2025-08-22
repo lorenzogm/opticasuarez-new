@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate, useSearchParams, useFetcher } from 'react-router';
+import { useState } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router';
 import ProgressIndicator from '../../components/progress-indicator';
 
 // Generate available dates for the next 30 days (excluding weekends)
@@ -22,43 +22,6 @@ const generateAvailableDates = () => {
   return dates;
 };
 
-// Get appointment duration from appointment type
-const getAppointmentDuration = (appointmentType: string): number => {
-  switch (appointmentType) {
-    case 'phone-consultation':
-      return 10; // 10 minutes
-    case 'refraction-exam':
-      return 30; // 30 minutes
-    case 'visual-efficiency-eval':
-    case 'child-exam':
-    case 'contact-lens':
-    case 'sports-vision':
-      return 60; // 60 minutes
-    default:
-      return 30; // default to 30 minutes
-  }
-};
-
-// Generate time slots based on appointment duration (9 AM - 12 PM only)
-const generateTimeSlots = (durationMinutes: number): string[] => {
-  const slots: string[] = [];
-  const startHour = 9; // 9 AM
-  const endHour = 12; // 12 PM (noon)
-  
-  let currentTime = startHour * 60; // Convert to minutes (9:00 = 540 minutes)
-  const endTime = endHour * 60; // Convert to minutes (12:00 = 720 minutes)
-  
-  while (currentTime + durationMinutes <= endTime) {
-    const hours = Math.floor(currentTime / 60);
-    const minutes = currentTime % 60;
-    const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-    slots.push(timeString);
-    currentTime += durationMinutes;
-  }
-  
-  return slots;
-};
-
 const appointmentTypes = {
   'phone-consultation': 'Cita telefónica',
   'refraction-exam': 'Cita refracción',
@@ -71,42 +34,12 @@ const appointmentTypes = {
 export default function DateTimeSelection() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const fetcher = useFetcher();
   const appointmentType = searchParams.get('type') || '';
   const location = searchParams.get('location') || '';
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [bookedSlots, setBookedSlots] = useState<Set<string>>(new Set());
+  const [selectedPeriod, setSelectedPeriod] = useState<string | null>(null);
 
   const availableDates = generateAvailableDates();
-  
-  // Generate time slots based on appointment type duration
-  const appointmentDuration = getAppointmentDuration(appointmentType);
-  const timeSlots = generateTimeSlots(appointmentDuration);
-
-  // Fetch existing appointments on component mount
-  useEffect(() => {
-    fetcher.load('/api/appointments');
-  }, [fetcher]);
-
-  // Update booked slots when data is fetched
-  useEffect(() => {
-    if (fetcher.data && fetcher.data.appointments) {
-      const booked = new Set<string>();
-      fetcher.data.appointments.forEach((apt: { date: string; time: string; location: string }) => {
-        const aptDate = new Date(apt.date);
-        const dateKey = `${aptDate.toISOString().split('T')[0]}-${apt.time}-${apt.location}`;
-        booked.add(dateKey);
-      });
-      setBookedSlots(booked);
-    }
-  }, [fetcher.data]);
-
-  // Check if a time slot is available
-  const isTimeSlotAvailable = (date: Date, time: string): boolean => {
-    const dateKey = `${date.toISOString().split('T')[0]}-${time}-${location}`;
-    return !bookedSlots.has(dateKey);
-  };
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('es-ES', {
@@ -126,17 +59,17 @@ export default function DateTimeSelection() {
   };
 
   const handleContinue = () => {
-    if (selectedDate && selectedTime) {
+    if (selectedDate && selectedPeriod) {
       const params = new URLSearchParams();
       params.set('type', appointmentType);
       params.set('location', location);
       params.set('date', selectedDate.toISOString());
-      params.set('time', selectedTime);
+      params.set('period', selectedPeriod);
       navigate(`/cita/contacto?${params.toString()}`);
     }
   };
 
-  const canContinue = selectedDate && selectedTime;
+  const canContinue = selectedDate && selectedPeriod;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -209,10 +142,10 @@ export default function DateTimeSelection() {
             </div>
           </div>
 
-          {/* Time Selection */}
+          {/* Time Period Selection */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              Horarios disponibles
+              Horario preferido
               {selectedDate && (
                 <span className="block text-sm font-normal text-gray-600 mt-1">
                   {formatDate(selectedDate)}
@@ -222,34 +155,32 @@ export default function DateTimeSelection() {
 
             {!selectedDate ? (
               <div className="text-gray-500 italic">
-                Selecciona una fecha para ver los horarios disponibles
+                Selecciona una fecha para elegir el horario
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-2 max-h-96 overflow-y-auto">
-                {timeSlots.map((time) => {
-                  const isAvailable = isTimeSlotAvailable(selectedDate, time);
-                  const isSelected = selectedTime === time;
-                  
-                  return (
-                    <button
-                      key={time}
-                      onClick={() => isAvailable ? setSelectedTime(time) : null}
-                      disabled={!isAvailable}
-                      className={`p-3 text-center rounded-lg border-2 transition-all duration-200 ${
-                        isSelected
-                          ? 'border-blue-600 bg-blue-50 text-blue-900'
-                          : isAvailable
-                          ? 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
-                          : 'border-gray-100 bg-gray-50 text-gray-400 cursor-not-allowed'
-                      }`}
-                    >
-                      <div className="font-medium">{time}</div>
-                      {!isAvailable && (
-                        <div className="text-xs text-gray-400 mt-1">No disponible</div>
-                      )}
-                    </button>
-                  );
-                })}
+              <div className="space-y-2">
+                <button
+                  onClick={() => setSelectedPeriod('morning')}
+                  className={`w-full p-4 text-left rounded-lg border-2 transition-all duration-200 ${
+                    selectedPeriod === 'morning'
+                      ? 'border-blue-600 bg-blue-50 text-blue-900'
+                      : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
+                  }`}
+                >
+                  <div className="font-medium">Mañana</div>
+                  <div className="text-sm text-gray-600">9:00 - 12:00</div>
+                </button>
+                <button
+                  onClick={() => setSelectedPeriod('afternoon')}
+                  className={`w-full p-4 text-left rounded-lg border-2 transition-all duration-200 ${
+                    selectedPeriod === 'afternoon'
+                      ? 'border-blue-600 bg-blue-50 text-blue-900'
+                      : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
+                  }`}
+                >
+                  <div className="font-medium">Tarde</div>
+                  <div className="text-sm text-gray-600">16:00 - 19:00</div>
+                </button>
               </div>
             )}
           </div>
