@@ -1,3 +1,5 @@
+import { Resend } from 'resend';
+
 interface BookingDetails {
   appointmentType: string;
   location: string;
@@ -9,6 +11,9 @@ interface BookingDetails {
   email: string;
   observations: string;
 }
+
+// Initialize Resend only if API key is available (avoids build errors)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const appointmentTypes = {
   'phone-consultation': 'Cita telefónica',
@@ -111,27 +116,33 @@ Si tienes alguna pregunta, no dudes en contactarnos:
 Óptica Suárez
     `;
 
-    // In a real implementation, you would send actual emails here
-    // For now, we'll log them as the current system does
-    console.log(`Email que se enviaría a optica@lorenzogm.com:`);
-    console.log(opticaEmailContent);
-    
-    console.log(`\nEmail que se enviaría a ${bookingDetails.email}:`);
-    console.log(customerEmailContent);
+    // Check if Resend is available (API key provided)
+    if (!resend) {
+      console.log('RESEND_API_KEY not found. Email sending is disabled.');
+      console.log(`Email que se enviaría a optica@lorenzogm.com:`);
+      console.log(opticaEmailContent);
+      console.log(`\nEmail que se enviaría a ${bookingDetails.email}:`);
+      console.log(customerEmailContent);
+      return { success: true };
+    }
 
-    // TODO: Replace with actual email sending service
-    // Example:
-    // await sendEmail({
-    //   to: 'optica@lorenzogm.com',
-    //   subject: 'Nueva cita reservada - Óptica Suárez',
-    //   text: opticaEmailContent
-    // });
-    //
-    // await sendEmail({
-    //   to: bookingDetails.email,
-    //   subject: 'Confirmación de cita - Óptica Suárez',
-    //   text: customerEmailContent
-    // });
+    // Send email to Óptica Suárez
+    await resend.emails.send({
+      from: 'Óptica Suárez <no-reply@opticasuarezjaen.es>',
+      to: ['optica@lorenzogm.com'],
+      subject: 'Nueva cita reservada - Óptica Suárez',
+      text: opticaEmailContent.trim(),
+    });
+
+    // Send confirmation email to customer
+    await resend.emails.send({
+      from: 'Óptica Suárez <no-reply@opticasuarezjaen.es>',
+      to: [bookingDetails.email],
+      subject: 'Confirmación de cita - Óptica Suárez',
+      text: customerEmailContent.trim(),
+    });
+
+    console.log(`Emails sent successfully to optica@lorenzogm.com and ${bookingDetails.email}`);
 
     return { success: true };
   } catch (error) {
