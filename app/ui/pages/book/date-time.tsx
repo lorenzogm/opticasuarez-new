@@ -179,7 +179,7 @@ export default function DateTimeSelection() {
                   }`}
                 >
                   <div className="font-medium">Tarde</div>
-                  <div className="text-sm text-gray-600">16:00 - 19:00</div>
+                  <div className="text-sm text-gray-600">17:00 - 20:00</div>
                 </button>
               </div>
             )}

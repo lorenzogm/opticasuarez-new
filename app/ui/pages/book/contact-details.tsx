@@ -27,6 +27,7 @@ export default function ContactDetails() {
   const [nameError, setNameError] = useState('');
   const [ageError, setAgeError] = useState('');
   const [phoneError, setPhoneError] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   const selectedDate = dateParam ? new Date(dateParam) : null;
 
@@ -83,11 +84,16 @@ export default function ContactDetails() {
   };
 
   const validateEmail = (value: string) => {
-    // Email is now optional, so only validate if provided
-    if (value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-      return false; // Invalid format if provided
+    if (!value.trim()) {
+      setEmailError('El email es requerido');
+      return false;
     }
-    return true; // Valid if empty or correct format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setEmailError('Introduce un email válido');
+      return false;
+    }
+    setEmailError('');
+    return true;
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,7 +123,9 @@ export default function ContactDetails() {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
-    // No need to show error on change since it's optional
+    if (emailError) {
+      validateEmail(value);
+    }
   };
 
   const handleContinue = () => {
@@ -135,9 +143,7 @@ export default function ContactDetails() {
       params.set('name', name.trim());
       params.set('age', age.trim());
       params.set('phone', phone.replace(/\s/g, ''));
-      if (email.trim()) {
-        params.set('email', email.trim());
-      }
+      params.set('email', email.trim());
       params.set('observations', observations.trim());
       navigate(`/cita/confirmacion?${params.toString()}`);
     }
@@ -147,10 +153,11 @@ export default function ContactDetails() {
     name.trim() && 
     age.trim() && 
     phone.trim() && 
+    email.trim() &&
     !nameError && 
     !ageError && 
     !phoneError &&
-    validateEmail(email);
+    !emailError;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -210,7 +217,7 @@ export default function ContactDetails() {
               </p>
             )}
             <p>
-              <span className="font-medium">Hora:</span> {period === 'morning' ? 'Mañana (9:00-12:00)' : 'Tarde (16:00-19:00)'}
+              <span className="font-medium">Hora:</span> {period === 'morning' ? 'Mañana (9:00-12:00)' : 'Tarde (17:00-20:00)'}
             </p>
           </div>
         </div>
@@ -307,18 +314,21 @@ export default function ContactDetails() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Email (opcional)
+                  Email *
                 </label>
                 <input
                   type="email"
                   id="email"
                   value={email}
                   onChange={handleEmailChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  onBlur={() => validateEmail(email)}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                    emailError ? 'border-red-500' : 'border-gray-300'
+                  }`}
                   placeholder="tu@email.com"
                 />
-                {email.trim() && !validateEmail(email) && (
-                  <p className="mt-1 text-sm text-red-600">Introduce un email válido</p>
+                {emailError && (
+                  <p className="mt-1 text-sm text-red-600">{emailError}</p>
                 )}
               </div>
 

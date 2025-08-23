@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router';
+import { Link, useSearchParams, useFetcher } from 'react-router';
 import ProgressIndicator from '../../components/progress-indicator';
 import { Button } from '../../components/button';
 import { Text } from '../../components/text';
@@ -37,12 +37,12 @@ const locations = {
 
 const periods = {
   morning: 'Mañana (9:00-12:00)',
-  afternoon: 'Tarde (16:00-19:00)',
+  afternoon: 'Tarde (17:00-20:00)',
 };
 
 export default function Confirmation() {
   const [searchParams] = useSearchParams();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const fetcher = useFetcher();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const appointmentType = searchParams.get('type') || '';
@@ -66,53 +66,29 @@ export default function Confirmation() {
     });
   };
 
-  const handleConfirmBooking = async () => {
-    setIsSubmitting(true);
+  const handleConfirmBooking = () => {
+    const formData = new FormData();
+    formData.append('appointmentType', appointmentType);
+    formData.append('location', location);
+    formData.append('date', dateParam || '');
+    formData.append('period', period);
+    formData.append('name', name);
+    formData.append('age', age);
+    formData.append('phone', phone);
+    formData.append('email', email);
+    formData.append('observations', observations);
 
-    try {
-      // Create email content for logging (no database save)
-      const selectedLocation = locations[location as keyof typeof locations];
-      const emailContent = `
-Nueva cita reservada en Óptica Suárez
-
-Detalles de la cita:
-- Tipo de servicio: ${appointmentTypes[appointmentType as keyof typeof appointmentTypes]}
-- Duración: ${appointmentDurations[appointmentType as keyof typeof appointmentDurations]}
-- Centro: ${selectedLocation?.name || 'No especificado'}
-- Dirección: ${selectedLocation?.address || ''}
-- Fecha: ${selectedDate ? formatDate(selectedDate) : ''}
-- Horario: ${periods[period as keyof typeof periods] || period}
-
-Datos del cliente:
-- Nombre: ${name}
-- Edad: ${age} años
-- Teléfono: ${phone}
-${email ? `- Email: ${email}` : ''}
-${observations ? `- Observaciones: ${observations}` : ''}
-
-Reserva realizada el: ${new Date().toLocaleString('es-ES')}
-      `;
-
-      // Get the correct email based on location
-      const destinationEmail = selectedLocation?.email || 'optica@lorenzogm.com';
-      
-      // Log the email content (in a real app, this would be sent to the location-specific email)
-      console.log(`Email que se enviaría a ${destinationEmail}:`);
-      console.log(emailContent);
-
-      // Simulate processing time
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      setIsSubmitted(true);
-    } catch (error) {
-      console.error('Error submitting booking:', error);
-      alert(
-        'Ha ocurrido un error al enviar la reserva. Por favor, inténtalo de nuevo.'
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
+    fetcher.submit(formData, { method: 'post' });
   };
+
+  // Check if the action was successful
+  if (fetcher.data?.success) {
+    if (!isSubmitted) {
+      setIsSubmitted(true);
+    }
+  }
+
+  const isSubmitting = fetcher.state === 'submitting';
 
   if (isSubmitted) {
     return (
